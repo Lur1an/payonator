@@ -180,6 +180,9 @@ async fn process_transaction(pool: &SqlitePool, record: TransactionRecord) -> an
             };
             client.total_funds -= disputed_transaction.amount;
             client.held_funds -= disputed_transaction.amount;
+            if client.total_funds < 0.0 {
+                anyhow::bail!("can't chargeback to negative total funds");
+            }
             client.locked = true;
 
             let mut tx = conn.begin().await?;

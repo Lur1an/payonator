@@ -20,8 +20,7 @@ For faster storage solutions the engine can be refactored around a trait `Storag
 The engine is safe despite concurrency by ensuring that for every client it is always the same working executing its transactions in chronological order.
 
 ## Negative Balance
-Negative balance can happen through a chargeback on an account with not enough funds.
-Withdrawals cannot put the balance to negative.
+Negative total balance can't happen, however negative available balance can happen through a dispute.
 
 ## Error handling
 Error handling currently is not fine-grained as there is no behaviour to be executed when handling
